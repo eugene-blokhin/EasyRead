@@ -77,7 +77,7 @@ module DataFileParser =
         if not <| isCommentsLine str then 
             let fields = getFields str
             let synsetOffsetField = Int32.Parse(fields.[0])
-            let wCntField = Int32.Parse(fields.[3])
+            let wCntField = Convert.ToInt32(fields.[3], 16)
             let glossField = (str.LastIndexOf('|') + 1 |> str.Substring).Trim()
             
             let words = 

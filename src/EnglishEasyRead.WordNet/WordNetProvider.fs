@@ -23,6 +23,7 @@ module WordNetProvider =
             | Adjective -> "index.adj"
         IndexFileParser.parseIndexFile <| Path.Combine(databasePath, filename)
     
+    [<CompiledNameAttribute("LoadData")>]
     let loadData databasePath syntacticCategory = 
         let filename = 
             match syntacticCategory with

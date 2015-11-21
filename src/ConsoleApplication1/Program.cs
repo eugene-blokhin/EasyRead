@@ -25,7 +25,7 @@ namespace ConsoleApplication1
                         Console.WriteLine(" {0} ->", form);
                         foreach (var indexRecord in indexRecords)
                         {
-                            Console.WriteLine("  {0} {1}", ConvertToString(indexRecord.Pos), string.Join("|", indexRecord.SynsetOffsetList));
+                            Console.WriteLine("  {0} {1}", ConvertToString(indexRecord.SyntacticCategory), string.Join("|", indexRecord.SynsetsOffsets));
                         }
                     }
                     else
@@ -37,7 +37,7 @@ namespace ConsoleApplication1
             }
         }
 
-        private static string ConvertToString(WordNetProvider.SyntacticCategory category)
+        private static string ConvertToString(SyntacticCategory category)
         {
             if (category.IsNoun) return "Noun";
             if (category.IsVerb) return "Verb";

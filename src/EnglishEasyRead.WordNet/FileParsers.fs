@@ -1,5 +1,6 @@
 ﻿namespace EnglishEasyRead.WordNet
 
+//See the format description for WordNet database files here: https://wordnet.princeton.edu/wordnet/man/wndb.5WN.html.
 module internal ParsersHelper = 
     open System
     open System.IO
@@ -23,7 +24,6 @@ module IndexFileParser =
     
     [<CompiledNameAttribute("ParseLine")>]
     let parseLine (str : string) = 
-        //See the format description here: https://wordnet.princeton.edu/wordnet/man/wndb.5WN.html.
         if not <| isCommentsLine str then 
             let fields = getFields str
             let lemma = fields.[0]
@@ -34,20 +34,17 @@ module IndexFileParser =
             let syntacticCategory = 
                 match posField with
                 | SyntacticCategory category -> category
-                | _ -> 
-                    raise 
-                        (new FormatException(sprintf 
-                                                 "Pos value %s is unknown and cannot be mapped to a SyntacticCategory value." 
-                                                 posField))
+                | _ -> raise (new FormatException(sprintf "Pos value %s is unknown and cannot be mapped to a SyntacticCategory value." posField))
             
             let synetsOffsets = 
                 fields
                 |> Seq.skip (6 + pCntField)
+                |> Seq.take synsetCntField
                 |> Seq.map Int32.Parse
             
             { Lemma = lemma
               SyntacticCategory = syntacticCategory
-              SynsetsOffsets = synetsOffsets }
+              SynsetsOffsets = synetsOffsets |> Array.ofSeq }
             |> Some
         else None
     
@@ -55,20 +52,41 @@ module IndexFileParser =
     let parseIndexFile filePath = parseFile parseLine filePath
 
 module ExceptionFileParser = 
-    open System
     open ParsersHelper
     
     [<CompiledNameAttribute("ParseLine")>]
     let parseLine (str : string) = 
-        //See the format description here: https://wordnet.princeton.edu/wordnet/man/wndb.5WN.html.
         if not <| isCommentsLine str then 
             let fields = getFields str
             let inflectedForm = fields.[0]
             let lemmas = fields |> Seq.skip 1
             { InflectedForm = inflectedForm
-              Lemmas = lemmas }
+              Lemmas = lemmas |> Array.ofSeq }
             |> Some
         else None
     
     [<CompiledNameAttribute("ParseExceptionFile")>]
     let parseExceptionFile filePath = parseFile parseLine filePath
+
+module DataFileParser = 
+    open ParsersHelper
+    open System
+    
+    [<CompiledNameAttribute("ParseLine")>]
+    let parseLine (str : string) = 
+        if not <| isCommentsLine str then 
+            let fields = getFields str
+            let synsetOffsetField = Int32.Parse(fields.[0])
+            let wCntField = Int32.Parse(fields.[3])
+            let glossField = (str.LastIndexOf('|') + 1 |> str.Substring).Trim()
+            
+            let words = 
+                [| for i in 0..wCntField - 1 -> { Word = fields.[4 + i * 2] } |]
+            { SynsetOffset = synsetOffsetField
+              Words = words
+              Gloss = glossField }
+            |> Some
+        else None
+    
+    [<CompiledNameAttribute("ParseDataFile")>]
+    let parseDataFile filePath = parseFile parseLine filePath

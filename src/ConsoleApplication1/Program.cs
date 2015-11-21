@@ -16,7 +16,7 @@ namespace ConsoleApplication1
             var normalizedForms = tokens.Select(t => new {SourceForm = t, NormalizedForms = wordNetClient.GetBaseForms(t)});
             foreach (var normalizedForm in normalizedForms.Take(1000))
             {
-                Console.WriteLine("{0} ->", normalizedForm.SourceForm);
+                Console.WriteLine("{0} ->", normalizedForm.NormalizedForms);
                 foreach (var form in normalizedForm.NormalizedForms)
                 {
                     var indexRecords = wordNetClient.IndexSeek(form);

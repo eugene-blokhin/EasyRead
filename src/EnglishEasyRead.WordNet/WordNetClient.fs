@@ -38,7 +38,7 @@ type WordNetClient(databasePath) =
             let (|GetStem|_|) (ending : string) (replacements : string seq) (str : string) = 
                 if str.EndsWith(ending) then 
                     let wordWithoutEnding = str.Substring(0, str.Length - ending.Length)
-                    seq { for replacement in replacements -> (wordWithoutEnding + replacement) }
+                    [| for replacement in replacements -> (wordWithoutEnding + replacement) |]
                     |> Some
                 else None
             match word with
@@ -55,7 +55,8 @@ type WordNetClient(databasePath) =
             | GetStem "er" [ ""; "e" ] baseForms -> baseForms
             | GetStem "est" [ ""; "e" ] baseForms -> baseForms
             | GetStem "s" [ "" ] baseForms -> baseForms
-            | _ -> seq { yield word }
+            | _ -> [| word |]
+        |> Array.ofSeq
     
     member this.IndexSeek lemma = 
         seq { 

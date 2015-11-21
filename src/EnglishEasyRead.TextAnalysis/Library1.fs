@@ -13,3 +13,4 @@ module Tokenizer =
         |> Seq.map (fun w -> w.Value.ToLower())
         |> Array.ofSeq
 
+

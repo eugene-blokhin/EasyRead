@@ -48,6 +48,13 @@
     </Compile>
     <Compile Include="Library1.fs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EnglishEasyRead.WordNet\EnglishEasyRead.WordNet.fsproj">
+      <Name>EnglishEasyRead.WordNet</Name>
+      <Project>{6b054759-617c-45e5-953e-c167ef6969ed}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
   </PropertyGroup>

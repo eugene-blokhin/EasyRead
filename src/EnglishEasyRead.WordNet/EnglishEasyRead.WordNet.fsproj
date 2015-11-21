@@ -49,7 +49,8 @@
     <Compile Include="Common.fs" />
     <Compile Include="FileParsers.fs" />
     <Compile Include="WordNetProvider.fs" />
-    <Compile Include="WordNetClient.fs" />
+    <Compile Include="Morpher.fs" />
+    <Compile Include="WordNetFacade.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>

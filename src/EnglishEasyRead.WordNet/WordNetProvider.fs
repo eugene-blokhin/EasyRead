@@ -1,9 +1,8 @@
 ﻿namespace EnglishEasyRead.WordNet
 
-
-module WordNetProvider =
+module WordNetProvider = 
     open System.IO
-
+    
     [<CompiledNameAttribute("LoadExceptions")>]
     let loadExceptions databasePath syntacticCategory = 
         let filename = 
@@ -23,3 +22,12 @@ module WordNetProvider =
             | Adverb -> "index.adv"
             | Adjective -> "index.adj"
         IndexFileParser.parseIndexFile <| Path.Combine(databasePath, filename)
+    
+    let loadData databasePath syntacticCategory = 
+        let filename = 
+            match syntacticCategory with
+            | Noun -> "data.noun"
+            | Verb -> "data.verb"
+            | Adverb -> "data.adv"
+            | Adjective -> "data.adj"
+        DataFileParser.parseDataFile <| Path.Combine(databasePath, filename)

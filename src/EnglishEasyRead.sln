@@ -9,6 +9,10 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "EnglishEasyRead.WordNet", "
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "EnglishEasyRead.TextAnalysis", "EnglishEasyRead.TextAnalysis\EnglishEasyRead.TextAnalysis.fsproj", "{BF4D404F-6D21-40BE-98D1-6735E05F7E3E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B2E4EA0C-B8F5-43B8-9B5C-3DF292904204}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "EnglishEasyRead.TextAnalysis.Tests", "EnglishEasyRead.TextAnalysis.Tests\EnglishEasyRead.TextAnalysis.Tests.fsproj", "{4E74572C-4EBF-40A0-8A0E-C232DE2221DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,15 @@ Global
 		{BF4D404F-6D21-40BE-98D1-6735E05F7E3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF4D404F-6D21-40BE-98D1-6735E05F7E3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF4D404F-6D21-40BE-98D1-6735E05F7E3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E74572C-4EBF-40A0-8A0E-C232DE2221DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E74572C-4EBF-40A0-8A0E-C232DE2221DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E74572C-4EBF-40A0-8A0E-C232DE2221DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E74572C-4EBF-40A0-8A0E-C232DE2221DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E74572C-4EBF-40A0-8A0E-C232DE2221DB} = {B2E4EA0C-B8F5-43B8-9B5C-3DF292904204}
 	EndGlobalSection
 EndGlobal

@@ -9,7 +9,7 @@ type WordNetClient(databasePath) =
                            loadExceptions databasePath Verb
                            loadExceptions databasePath Adverb
                            loadExceptions databasePath Adjective ]
-              |> Seq.map (fun e -> (e.InflectedForm, e.BaseForms))
+              |> Seq.map (fun e -> (e.InflectedForm, e.Lemmas))
               |> Map)
     
     let toIndexDictionary intexRecords = 
@@ -38,7 +38,7 @@ type WordNetClient(databasePath) =
             let (|GetStem|_|) (ending : string) (replacements : string seq) (str : string) = 
                 if str.EndsWith(ending) then 
                     let wordWithoutEnding = str.Substring(0, str.Length - ending.Length)
-                    [ for replacement in replacements -> (wordWithoutEnding + replacement) ]
+                    seq { for replacement in replacements -> (wordWithoutEnding + replacement) }
                     |> Some
                 else None
             match word with
@@ -55,8 +55,7 @@ type WordNetClient(databasePath) =
             | GetStem "er" [ ""; "e" ] baseForms -> baseForms
             | GetStem "est" [ ""; "e" ] baseForms -> baseForms
             | GetStem "s" [ "" ] baseForms -> baseForms
-            | _ -> [ word ]
-        |> Array.ofList
+            | _ -> seq { yield word }
     
     member this.IndexSeek lemma = 
         seq { 

@@ -5,14 +5,14 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>5a936b8c-13e0-4348-98b4-53ca2d1ce586</ProjectGuid>
+    <ProjectGuid>fda749ad-327a-4ab6-96e6-fe5b55f5cf94</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>EnglishEasyRead.DictionaryApi</RootNamespace>
-    <AssemblyName>EnglishEasyRead.DictionaryApi</AssemblyName>
+    <RootNamespace>EnglishEasyRead.WebHost</RootNamespace>
+    <AssemblyName>EnglishEasyRead.WebHost</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
-    <Name>EnglishEasyRead.DictionaryApi</Name>
+    <Name>EnglishEasyRead.WebHost</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DocumentationFile>bin\Debug\EnglishEasyRead.DictionaryApi.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\EnglishEasyRead.WebHost.XML</DocumentationFile>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -34,7 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DocumentationFile>bin\Release\EnglishEasyRead.DictionaryApi.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\EnglishEasyRead.WebHost.XML</DocumentationFile>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
@@ -57,8 +57,8 @@
     <Compile Include="..\AssemblyInfo.fs">
       <Link>AssemblyInfo.fs</Link>
     </Compile>
-    <Compile Include="Tokenizer.fs" />
-    <Compile Include="DictionaryApi.fs" />
+    <Compile Include="Program.fs" />
+    <None Include="App.config" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -67,7 +67,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Nancy">
-      <HintPath>..\packages\Nancy.1.4.3\lib\net40\Nancy.dll</HintPath>
+      <HintPath>..\packages\Nancy.1.4.1\lib\net40\Nancy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Self">
+      <HintPath>..\packages\Nancy.Hosting.Self.1.4.1\lib\net40\Nancy.Hosting.Self.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -75,6 +79,11 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EnglishEasyRead.DictionaryApi\EnglishEasyRead.DictionaryApi.fsproj">
+      <Name>EnglishEasyRead.DictionaryApi</Name>
+      <Project>{5a936b8c-13e0-4348-98b4-53ca2d1ce586}</Project>
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\EnglishEasyRead.WordNet\EnglishEasyRead.WordNet.fsproj">
       <Name>EnglishEasyRead.WordNet</Name>
       <Project>{6b054759-617c-45e5-953e-c167ef6969ed}</Project>

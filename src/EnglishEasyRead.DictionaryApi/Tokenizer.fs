@@ -1,4 +1,4 @@
-﻿namespace EnglishEasyRead.TextAnalysis
+﻿namespace EnglishEasyRead.DictionaryApi
 
 module Tokenizer = 
     open System.Text.RegularExpressions
@@ -11,6 +11,3 @@ module Tokenizer =
                else None)
         |> Seq.filter (fun w -> w.IsSome)
         |> Seq.map (fun w -> w.Value.ToLower())
-        |> Array.ofSeq
-
-

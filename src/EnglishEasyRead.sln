@@ -1,13 +1,8 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{09825327-6BF0-4DA8-AAB6-58012F4D3505}"
-EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "EnglishEasyRead.WordNet", "EnglishEasyRead.WordNet\EnglishEasyRead.WordNet.fsproj", "{6B054759-617C-45E5-953E-C167EF6969ED}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "EnglishEasyRead.TextAnalysis", "EnglishEasyRead.TextAnalysis\EnglishEasyRead.TextAnalysis.fsproj", "{BF4D404F-6D21-40BE-98D1-6735E05F7E3E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3BF1E925-1218-446D-9296-C1DAFA8A21A5}"
 EndProject

@@ -20,7 +20,7 @@ type TextAnalysisService(wordNetFacade : IWordNetFacade, morpher : Morpher) =
             |> Array.ofSeq
 
 type DictionaryApi(textAnalysisService : ITextAnalysisService) as this =
-    inherit NancyModule("dictionary")
+    inherit NancyModule("dictionaryApi")
 
     do
         this.Post.["/get-lemmas"] <- fun _ ->

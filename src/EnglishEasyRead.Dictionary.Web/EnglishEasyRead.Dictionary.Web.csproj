@@ -102,6 +102,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EnglishEasyRead.BusinessServices.NancyModules\EnglishEasyRead.BusinessServices.NancyModules.csproj">
+      <Project>{176c129b-55f2-498e-9adf-f6a79c13f2e9}</Project>
+      <Name>EnglishEasyRead.BusinessServices.NancyModules</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnglishEasyRead.BusinessServices\EnglishEasyRead.BusinessServices.csproj">
+      <Project>{329D18DF-FF67-4826-8B2B-29BA5C84D85E}</Project>
+      <Name>EnglishEasyRead.BusinessServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EnglishEasyRead.Core.NancyModules\EnglishEasyRead.Core.NancyModules.csproj">
       <Project>{7cdf479d-b85e-4c63-b7fd-3156e006106d}</Project>
       <Name>EnglishEasyRead.Core.NancyModules</Name>

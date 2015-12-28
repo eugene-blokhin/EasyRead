@@ -9,8 +9,7 @@ namespace EnglishEasyRead.Dictionary.NancyModules
     {
         public DictionaryApiModule(IDictionaryApiModuleSettings settings) : base(settings.BasePath)
         {
-            Get["ExtractLemmasGet", "/extract-lemmas/{text*}", true] = async (param, ct) => ExtractLemmasAsync(param.text);
-            Post["ExtractLemmasPost", "/extract-lemmas", true] = async (_, ct) =>
+            Post["ExtractLemmas", "/extract-lemmas", true] = async (_, ct) =>
             {
                 using (var r = new StreamReader(Request.Body))
                 {

@@ -4,6 +4,7 @@ using EnglishEasyRead.BusinessServices.RemoteServices.DictionaryApi;
 using EnglishEasyRead.BusinessServices.RemoteServices.TextService;
 using EnglishEasyRead.Core.NancyModules;
 using EnglishEasyRead.Dictionary.NancyModules;
+using EnglishEasyRead.WordNet;
 using Nancy;
 using Nancy.TinyIoc;
 using Owin;
@@ -39,6 +40,7 @@ namespace EnglishEasyRead.Dictionary.Web
         {
             //EnglishEasyRead.Dictionary.NancyModules
             container.Register<IDictionaryApiModuleSettings>(new DictionaryApiModuleSettings());
+            container.Register<ITextAnalysisService, TextAnalysisService>();
 
             //EnglishEasyRead.Core.NancyModules
             container.Register<ITextModuleSettings>(new TextModuleSettings());
@@ -50,6 +52,11 @@ namespace EnglishEasyRead.Dictionary.Web
             //EnglishEasyRead.BusinessServices
             container.Register<IDictionaryApiClient>(new DictionaryApiClient("http://localhost:57504/api/dictionary"));
             container.Register<ITextServiceClient>(new TextServiceClient("http://localhost:57504/api/core"));
+
+            //EnglishEasyRead.Dictionary
+            var databasePath = @"C:\WordNet\2.1\dict";
+            container.Register<IMorpher>(new Morpher(databasePath));
+            container.Register<IWordNetFacade>(new WordNetFacade(databasePath));
         }
     }
 }

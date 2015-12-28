@@ -10,7 +10,7 @@ namespace EnglishEasyRead.Dictionary
             return Regex.Matches(text, @"([a-z]+)", RegexOptions.IgnoreCase)
                 .Cast<Match>()
                 .Where(m => m.Success)
-                .Select(m => m.Groups[2].Value)
+                .Select(m => m.Groups[1].Value)
                 .Select(t => t.ToLower())
                 .ToArray();
         }

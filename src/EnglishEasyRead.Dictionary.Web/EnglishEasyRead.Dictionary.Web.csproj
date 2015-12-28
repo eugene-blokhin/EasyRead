@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EnglishEasyRead.WordNet">
+      <HintPath>..\EnglishEasyRead.WordNet\bin\Debug\EnglishEasyRead.WordNet.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -117,6 +120,10 @@
     <ProjectReference Include="..\EnglishEasyRead.Dictionary.NancyModules\EnglishEasyRead.Dictionary.NancyModules.csproj">
       <Project>{2638d381-f8d5-4ade-a7b8-dd69aba5f21c}</Project>
       <Name>EnglishEasyRead.Dictionary.NancyModules</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnglishEasyRead.Dictionary\EnglishEasyRead.Dictionary.csproj">
+      <Project>{B71F28DC-D2C4-454D-9F1A-21ED5D68E52C}</Project>
+      <Name>EnglishEasyRead.Dictionary</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

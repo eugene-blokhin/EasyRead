@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{09825327-6BF0-4DA8-AAB6-58012F4D3505}"
 EndProject
@@ -12,6 +12,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3BF1E925-1218-446D-9296-C1DAFA8A21A5}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "EasyRead.WordNet.Tests", "EasyRead.WordNet.Tests\EasyRead.WordNet.Tests.fsproj", "{8ABD3ED2-16B3-492A-A9CA-E29577617D95}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{80EEA45C-4657-4E97-BF48-8012B7A11DAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishEasyRead.Dictionary.NancyModules", "EnglishEasyRead.Dictionary.NancyModules\EnglishEasyRead.Dictionary.NancyModules.csproj", "{2638D381-F8D5-4ADE-A7B8-DD69ABA5F21C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishEasyRead.Dictionary.Web", "EnglishEasyRead.Dictionary.Web\EnglishEasyRead.Dictionary.Web.csproj", "{6EEAECCD-4346-471F-8DF4-62CD34B259E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishEasyRead.Core.NancyModules", "EnglishEasyRead.Core.NancyModules\EnglishEasyRead.Core.NancyModules.csproj", "{7CDF479D-B85E-4C63-B7FD-3156E006106D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +43,18 @@ Global
 		{8ABD3ED2-16B3-492A-A9CA-E29577617D95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8ABD3ED2-16B3-492A-A9CA-E29577617D95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8ABD3ED2-16B3-492A-A9CA-E29577617D95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2638D381-F8D5-4ADE-A7B8-DD69ABA5F21C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2638D381-F8D5-4ADE-A7B8-DD69ABA5F21C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2638D381-F8D5-4ADE-A7B8-DD69ABA5F21C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2638D381-F8D5-4ADE-A7B8-DD69ABA5F21C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EEAECCD-4346-471F-8DF4-62CD34B259E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EEAECCD-4346-471F-8DF4-62CD34B259E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EEAECCD-4346-471F-8DF4-62CD34B259E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EEAECCD-4346-471F-8DF4-62CD34B259E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CDF479D-B85E-4C63-B7FD-3156E006106D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CDF479D-B85E-4C63-B7FD-3156E006106D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CDF479D-B85E-4C63-B7FD-3156E006106D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CDF479D-B85E-4C63-B7FD-3156E006106D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,5 +62,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{09825327-6BF0-4DA8-AAB6-58012F4D3505} = {3BF1E925-1218-446D-9296-C1DAFA8A21A5}
 		{8ABD3ED2-16B3-492A-A9CA-E29577617D95} = {3BF1E925-1218-446D-9296-C1DAFA8A21A5}
+		{2638D381-F8D5-4ADE-A7B8-DD69ABA5F21C} = {80EEA45C-4657-4E97-BF48-8012B7A11DAC}
+		{6EEAECCD-4346-471F-8DF4-62CD34B259E1} = {80EEA45C-4657-4E97-BF48-8012B7A11DAC}
+		{7CDF479D-B85E-4C63-B7FD-3156E006106D} = {80EEA45C-4657-4E97-BF48-8012B7A11DAC}
 	EndGlobalSection
 EndGlobal

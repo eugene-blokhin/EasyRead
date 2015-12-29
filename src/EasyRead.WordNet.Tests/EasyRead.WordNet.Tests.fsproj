@@ -50,6 +50,7 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
+    <Compile Include="SharedAssemblyInfo.fs" />
     <Compile Include="CustomAsserts.fs" />
     <Compile Include="DataFileParserTests.fs" />
     <Content Include="packages.config" />

@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="ITextAnalysisService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextAnalysisService.cs" />
     <Compile Include="Tokenizer.cs" />
   </ItemGroup>

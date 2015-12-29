@@ -44,12 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="TextBusinessService.cs" />
     <Compile Include="RemoteServices\DictionaryApi\DictionaryApiClient.cs" />
     <Compile Include="RemoteServices\TextService\TextServiceClient.cs" />
     <Compile Include="TextModel.cs" />
     <Compile Include="ITextBusinessService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemoteServices\DictionaryApi\IDictionaryApiClient.cs" />
     <Compile Include="RemoteServices\TextService\ITextServiceClient.cs" />
     <Compile Include="RemoteServices\TextService\TextModel.cs" />

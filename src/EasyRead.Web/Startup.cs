@@ -1,9 +1,16 @@
-﻿using EasyRead.BusinessServices;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using EasyRead.BusinessServices;
 using EasyRead.BusinessServices.RemoteServices.DictionaryApi;
 using EasyRead.BusinessServices.RemoteServices.TextService;
+using EasyRead.Core.DataAccess;
+using EasyRead.Core.Repositories;
+using EasyRead.Core.Services.User;
 using EasyRead.Dictionary;
 using EasyRead.NancyModules.BusinessServices;
 using EasyRead.NancyModules.Core;
+using EasyRead.NancyModules.Core.User;
 using EasyRead.NancyModules.Dictionary;
 using EasyRead.WordNet;
 using Nancy;
@@ -20,44 +27,116 @@ namespace EasyRead.Web
         }
     }
 
+    internal abstract class DependencyContainerSetup
+    {
+        public virtual void ConfigureApplicationContainer(TinyIoCContainer container) { }
+        public virtual void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context) { }
+    }
+
     public class Bootstrapper : DefaultNancyBootstrapper
     {
-        private class DictionaryApiModuleSettings : IDictionaryApiModuleSettings
+        private readonly List<DependencyContainerSetup> _containerSetups = new List<DependencyContainerSetup>
         {
-            public string BasePath { get; } = "/api/dictionary";
+            new UserServiceSetup(),
+            new DictionaryServiceSetup(), 
+            new TextServiceSetup(),
+            new TextBusinessServiceSetup()
+        };
+
+        protected override void ConfigureApplicationContainer(TinyIoCContainer container) =>
+            _containerSetups.ForEach(setup => setup.ConfigureApplicationContainer(container));
+
+        protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context) =>
+            _containerSetups.ForEach(setup => setup.ConfigureRequestContainer(container, context));
+        
+        private class UserServiceSetup : DependencyContainerSetup
+        {
+            private class UserModuleSettings : IUserModuleSettings
+            {
+                public string ModulePath { get; } = "api/core";
+            }
+
+            public override void ConfigureApplicationContainer(TinyIoCContainer container)
+            {
+                container.Register<IUserModuleSettings>(new UserModuleSettings());
+            }
+
+            public override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
+            {
+                container.Register<IUserService, UserService>();
+                container.Register<IUserRepository, UserRepository>();
+
+                var dbContext = new EasyReadDbContext("EasyReadDb");
+                container.Register<IDbContextFactory>(new DbContectFactory(dbContext));
+
+                //IDisposable items added to this collection are disposed automatically when the request has been processed.
+                context.Items["EasyReadDbContext"] = dbContext;
+            }
         }
 
-        private class TextModuleSettings : ITextModuleSettings
+        private class DictionaryServiceSetup : DependencyContainerSetup
         {
-            public string BasePath { get; } = "api/core";
+            private class DictionaryApiModuleSettings : IDictionaryApiModuleSettings
+            {
+                public string BasePath { get; } = "/api/dictionary";
+            }
+
+            public override void ConfigureApplicationContainer(TinyIoCContainer container)
+            {
+                container.Register<IDictionaryApiModuleSettings>(new DictionaryApiModuleSettings());
+                container.Register<ITextAnalysisService, TextAnalysisService>();
+
+                var databasePath = @"C:\WordNet\2.1\dict";
+                container.Register<IMorpher>(new Morpher(databasePath));
+                container.Register<IWordNetFacade>(new WordNetFacade(databasePath));
+            }
         }
 
-        private class TextBusinessServiceModuleSettings : ITextBusinessServiceModuleSettings
+        private class TextServiceSetup : DependencyContainerSetup
         {
-            public string BasePath { get; } = "api/gateway";
+            private class TextModuleSettings : ITextModuleSettings
+            {
+                public string BasePath { get; } = "api/core";
+            }
+
+            public override void ConfigureApplicationContainer(TinyIoCContainer container)
+            {
+                container.Register<ITextModuleSettings>(new TextModuleSettings());
+            }
         }
 
-        protected override void ConfigureApplicationContainer(TinyIoCContainer container)
+        private class TextBusinessServiceSetup : DependencyContainerSetup
         {
-            //EasyRead.Dictionary.NancyModules
-            container.Register<IDictionaryApiModuleSettings>(new DictionaryApiModuleSettings());
-            container.Register<ITextAnalysisService, TextAnalysisService>();
+            private class TextBusinessServiceModuleSettings : ITextBusinessServiceModuleSettings
+            {
+                public string BasePath { get; } = "api/gateway";
+            }
 
-            //EasyRead.Core.NancyModules
-            container.Register<ITextModuleSettings>(new TextModuleSettings());
+            public override void ConfigureApplicationContainer(TinyIoCContainer container)
+            {
+                container.Register<ITextBusinessServiceModuleSettings>(new TextBusinessServiceModuleSettings());
+                container.Register<ITextBusinessService, TextBusinessService>();
 
-            //EasyRead.BusinessServices.NancyModules
-            container.Register<ITextBusinessServiceModuleSettings>(new TextBusinessServiceModuleSettings());
-            container.Register<ITextBusinessService, TextBusinessService>();
+                container.Register<IDictionaryApiClient>(new DictionaryApiClient("http://localhost:57504/api/dictionary"));
+                container.Register<ITextServiceClient>(new TextServiceClient("http://localhost:57504/api/core"));
+            }
+        }
+    }
 
-            //EasyRead.BusinessServices
-            container.Register<IDictionaryApiClient>(new DictionaryApiClient("http://localhost:57504/api/dictionary"));
-            container.Register<ITextServiceClient>(new TextServiceClient("http://localhost:57504/api/core"));
 
-            //EasyRead.Dictionary
-            var databasePath = @"C:\WordNet\2.1\dict";
-            container.Register<IMorpher>(new Morpher(databasePath));
-            container.Register<IWordNetFacade>(new WordNetFacade(databasePath));
+    internal class DbContectFactory : IDbContextFactory
+    {
+        private readonly EasyReadDbContext _context;
+
+        public DbContectFactory(EasyReadDbContext context)
+        {
+            if (context == null) throw new ArgumentNullException(nameof(context));
+            _context = context;
+        }
+
+        public EasyReadDbContext GetContext()
+        {
+            return _context;
         }
     }
 }

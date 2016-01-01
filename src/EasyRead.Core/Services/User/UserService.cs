@@ -17,9 +17,13 @@ namespace EasyRead.Core.Services.User
         public long CreateUser(Model.User user)
         {
             if (user == null) throw new ArgumentNullException(nameof(user));
-            if (string.IsNullOrWhiteSpace(user.Email)) throw new ArgumentException("Email field cannot be null or empty.");
-            if (string.IsNullOrWhiteSpace(user.Name)) throw new ArgumentException("Name field cannot be null or empty.");
-            if (user.Id != default(long)) throw new ArgumentException("The instance already has an non-zero identifier.");
+
+            if (string.IsNullOrWhiteSpace(user.Email))
+                throw new ServiceException<ModelValidationError>(new ModelValidationError(nameof(user.Email), "Field cannot be null or empty."));
+            if (string.IsNullOrWhiteSpace(user.Name))
+                throw new ServiceException<ModelValidationError>(new ModelValidationError(nameof(user.Name), "Field cannot be null or empty."));
+            if (user.Id != default(long))
+                throw new ServiceException<ModelValidationError>(new ModelValidationError(nameof(user.Id), "Field must have value 0 for the creation operation."));
 
             return _userRepository.Create(user);
         }
@@ -30,5 +34,17 @@ namespace EasyRead.Core.Services.User
 
             return _userRepository.GetById(userId);
         }
+    }
+
+    public class ModelValidationError : ServiceExceptionData
+    {
+        public ModelValidationError(string field, string error)
+        {
+            Error = error;
+            Field = field;
+        }
+
+        public string Error { get; }
+        public string Field { get; }
     }
 }

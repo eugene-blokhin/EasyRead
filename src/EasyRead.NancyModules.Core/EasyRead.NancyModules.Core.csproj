@@ -34,6 +34,22 @@
       <HintPath>..\packages\Nancy.1.4.3\lib\net40\Nancy.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Nancy.Metadata.Modules, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Metadata.Modules.1.4.1\lib\net40\Nancy.Metadata.Modules.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nancy.Metadata.Swagger, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Metadata.Swagger.1.0.2\lib\net45\Nancy.Metadata.Swagger.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Schema, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.Schema.1.0.9\lib\net45\Newtonsoft.Json.Schema.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -51,11 +67,17 @@
     <Compile Include="TextModel.cs" />
     <Compile Include="ITextModuleSettings.cs" />
     <Compile Include="TextModule.cs" />
+    <Compile Include="User\UserModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EasyRead.Common\EasyRead.Common.csproj">
+      <Project>{779BE17D-1A28-4DC6-BDD2-3A7562E48E2B}</Project>
+      <Name>EasyRead.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EasyRead.Core\EasyRead.Core.csproj">
       <Project>{0a082478-1b5c-47b2-8eb0-f61aebd2ccfb}</Project>
       <Name>EasyRead.Core</Name>

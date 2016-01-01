@@ -1,6 +1,7 @@
 ﻿using System;
 using EasyRead.Core.Model;
 using EasyRead.Core.Repositories;
+using EasyRead.Core.Services;
 using EasyRead.Core.Services.User;
 using Moq;
 using NUnit.Framework;
@@ -10,13 +11,12 @@ namespace EasyRead.Core.Tests.Services
     [TestFixture]
     public class UserServiceTests
     {
-        [TestCase(0, null, "email@gmail.com", ExpectedException = typeof(ArgumentException))]
-        [TestCase(0, "name", null, ExpectedException = typeof(ArgumentException))]
-        [TestCase(0, "name", "email@gmail.com", ExpectedException = typeof(ArgumentException))]
-        [TestCase(0, "", "invalid@email", ExpectedException = typeof(ArgumentException))]
-        [TestCase(0, "name", "", ExpectedException = typeof(ArgumentException))]
+        [TestCase(0, null, "email@gmail.com", ExpectedException = typeof(ServiceException<ModelValidationError>))]
+        [TestCase(0, "name", null, ExpectedException = typeof(ServiceException<ModelValidationError>))]
+        [TestCase(0, "", "invalid@email", ExpectedException = typeof(ServiceException<ModelValidationError>))]
+        [TestCase(0, "name", "", ExpectedException = typeof(ServiceException<ModelValidationError>))]
         [TestCase(0, "Eugene Blokhin", "eugene.blohin@gmail.com")]
-        [TestCase(1, "Eugene Blokhin", "eugene.blohin@gmail.com", ExpectedException = typeof(ArgumentException))]
+        [TestCase(1, "Eugene Blokhin", "eugene.blohin@gmail.com", ExpectedException = typeof(ServiceException<ModelValidationError>))]
         public void CreateUser_General(long id, string name, string email)
         {
             var repositoryMock = new Mock<IUserRepository>(MockBehavior.Strict);

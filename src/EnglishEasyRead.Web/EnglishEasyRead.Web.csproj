@@ -107,21 +107,21 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EnglishEasyRead.BusinessServices.NancyModules\EnglishEasyRead.BusinessServices.NancyModules.csproj">
+    <ProjectReference Include="..\EnglishEasyRead.NancyModules.BusinessServices\EnglishEasyRead.NancyModules.BusinessServices.csproj">
       <Project>{176c129b-55f2-498e-9adf-f6a79c13f2e9}</Project>
-      <Name>EnglishEasyRead.BusinessServices.NancyModules</Name>
+      <Name>EnglishEasyRead.NancyModules.BusinessServices</Name>
     </ProjectReference>
     <ProjectReference Include="..\EnglishEasyRead.BusinessServices\EnglishEasyRead.BusinessServices.csproj">
       <Project>{329D18DF-FF67-4826-8B2B-29BA5C84D85E}</Project>
       <Name>EnglishEasyRead.BusinessServices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EnglishEasyRead.Core.NancyModules\EnglishEasyRead.Core.NancyModules.csproj">
+    <ProjectReference Include="..\EnglishEasyRead.NancyModules.Core\EnglishEasyRead.NancyModules.Core.csproj">
       <Project>{7cdf479d-b85e-4c63-b7fd-3156e006106d}</Project>
-      <Name>EnglishEasyRead.Core.NancyModules</Name>
+      <Name>EnglishEasyRead.NancyModules.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EnglishEasyRead.Dictionary.NancyModules\EnglishEasyRead.Dictionary.NancyModules.csproj">
+    <ProjectReference Include="..\EnglishEasyRead.NancyModules.Dictionary\EnglishEasyRead.NancyModules.Dictionary.csproj">
       <Project>{2638d381-f8d5-4ade-a7b8-dd69aba5f21c}</Project>
-      <Name>EnglishEasyRead.Dictionary.NancyModules</Name>
+      <Name>EnglishEasyRead.NancyModules.Dictionary</Name>
     </ProjectReference>
     <ProjectReference Include="..\EnglishEasyRead.Dictionary\EnglishEasyRead.Dictionary.csproj">
       <Project>{B71F28DC-D2C4-454D-9F1A-21ED5D68E52C}</Project>

@@ -1,10 +1,10 @@
 ﻿using EnglishEasyRead.BusinessServices;
-using EnglishEasyRead.BusinessServices.NancyModules;
 using EnglishEasyRead.BusinessServices.RemoteServices.DictionaryApi;
 using EnglishEasyRead.BusinessServices.RemoteServices.TextService;
-using EnglishEasyRead.Core.NancyModules;
 using EnglishEasyRead.Dictionary;
-using EnglishEasyRead.Dictionary.NancyModules;
+using EnglishEasyRead.NancyModules.BusinessServices;
+using EnglishEasyRead.NancyModules.Core;
+using EnglishEasyRead.NancyModules.Dictionary;
 using EnglishEasyRead.WordNet;
 using Nancy;
 using Nancy.TinyIoc;

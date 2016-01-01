@@ -1,4 +1,4 @@
-﻿namespace EnglishEasyRead.BusinessServices.NancyModules
+﻿namespace EnglishEasyRead.NancyModules.BusinessServices
 {
     public interface ITextBusinessServiceModuleSettings
     {

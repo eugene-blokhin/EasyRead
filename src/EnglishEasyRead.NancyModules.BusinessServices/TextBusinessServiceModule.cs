@@ -1,9 +1,10 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using EnglishEasyRead.BusinessServices;
 using Nancy;
 using Nancy.ModelBinding;
 
-namespace EnglishEasyRead.BusinessServices.NancyModules
+namespace EnglishEasyRead.NancyModules.BusinessServices
 {
     public class TextBusinessServiceModule : NancyModule
     {

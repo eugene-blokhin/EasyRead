@@ -7,8 +7,8 @@
     <ProjectGuid>{176C129B-55F2-498E-9ADF-F6A79C13F2E9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EnglishEasyRead.BusinessServices.NancyModules</RootNamespace>
-    <AssemblyName>EnglishEasyRead.BusinessServices.NancyModules</AssemblyName>
+    <RootNamespace>EnglishEasyRead.NancyModules.BusinessServices</RootNamespace>
+    <AssemblyName>EnglishEasyRead.NancyModules.BusinessServices</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -1,7 +1,7 @@
 ﻿namespace EasyRead.WordNet.Tests
 
 open NUnit.Framework
-open EnglishEasyRead.WordNet
+open EasyRead.WordNet
 
 [<TestFixture>]
 type DataFileParserTests() = 
@@ -46,3 +46,4 @@ type DataFileParserTests() =
         let result = DataFileParser.parseLine line
         Assert.True(result.IsSome)
         CustomAsserts.areEqual (expectedResult, result.Value)
+

@@ -2,11 +2,11 @@
 
 open System.Reflection
 
-[<assembly: AssemblyTitle("EnglishEasyRead")>]
+[<assembly: AssemblyTitle("EasyRead")>]
 [<assembly: AssemblyDescription("")>]
 [<assembly: AssemblyConfiguration("")>]
 [<assembly: AssemblyCompany("")>]
-[<assembly: AssemblyProduct("EnglishEasyRead")>]
+[<assembly: AssemblyProduct("EasyRead")>]
 [<assembly: AssemblyCopyright("Copyright ©  2015")>]
 [<assembly: AssemblyTrademark("")>]
 [<assembly: AssemblyCulture("")>]

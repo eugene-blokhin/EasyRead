@@ -43,7 +43,14 @@ namespace EnglishEasyRead.Core.Services.LoginAuthentication
             loginAuthentication.PasswordHash = saltedHash;
             loginAuthentication.Salt = salt;
 
-            _repository.Save(loginAuthentication);
+            if (loginAuthentication.Id == 0)
+            {
+                _repository.Save(loginAuthentication);
+            }
+            else
+            {
+                _repository.Update(loginAuthentication);
+            }
         }
 
         public long? GetUserId(string login, string password)

@@ -11,6 +11,11 @@ namespace EasyReader.Common
         {
         }
 
+        public Exception(T exceptionData)
+        {
+            ExceptionData = exceptionData;
+        }
+
         public Exception(string message) : base(message)
         {
         }

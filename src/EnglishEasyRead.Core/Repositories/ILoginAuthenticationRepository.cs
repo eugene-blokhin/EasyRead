@@ -7,5 +7,6 @@ namespace EnglishEasyRead.Core.Repositories
         LoginAuthentication GetByUserId(long userId);
         LoginAuthentication GetByLogin(string login);
         void Save(LoginAuthentication loginAuthentication);
+        void Update(LoginAuthentication loginAuthentication);
     }
 }

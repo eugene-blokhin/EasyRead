@@ -67,6 +67,7 @@
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\TextRepository.cs" />
     <Compile Include="Services\ITextServices.cs" />
+    <Compile Include="Services\LoginAuthentication\ILoginAuthenticationService.cs" />
     <Compile Include="Services\ServiceException.cs" />
     <Compile Include="Services\User\IUserService.cs" />
     <Compile Include="Services\LoginAuthentication\IPasswordValidator.cs" />

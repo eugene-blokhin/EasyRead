@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using EasyRead.BusinessServices;
 using EasyRead.BusinessServices.RemoteServices.DictionaryApi;
 using EasyRead.BusinessServices.RemoteServices.TextService;
 using EasyRead.Core.DataAccess;
 using EasyRead.Core.Repositories;
+using EasyRead.Core.Services.LoginAuthentication;
 using EasyRead.Core.Services.User;
 using EasyRead.Dictionary;
 using EasyRead.NancyModules.BusinessServices;
 using EasyRead.NancyModules.Core;
+using EasyRead.NancyModules.Core.LoginAuthentication;
 using EasyRead.NancyModules.Core.User;
 using EasyRead.NancyModules.Dictionary;
 using EasyRead.WordNet;
@@ -40,7 +41,9 @@ namespace EasyRead.Web
             new UserServiceSetup(),
             new DictionaryServiceSetup(), 
             new TextServiceSetup(),
-            new TextBusinessServiceSetup()
+            new TextBusinessServiceSetup(),
+            new LoginAuthenticationServiceSetup(),
+            new DatabaseContextServiceSetup()
         };
 
         protected override void ConfigureApplicationContainer(TinyIoCContainer container) =>
@@ -65,12 +68,6 @@ namespace EasyRead.Web
             {
                 container.Register<IUserService, UserService>();
                 container.Register<IUserRepository, UserRepository>();
-
-                var dbContext = new EasyReadDbContext("EasyReadDb");
-                container.Register<IDbContextFactory>(new DbContectFactory(dbContext));
-
-                //IDisposable items added to this collection are disposed automatically when the request has been processed.
-                context.Items["EasyReadDbContext"] = dbContext;
             }
         }
 
@@ -121,9 +118,41 @@ namespace EasyRead.Web
                 container.Register<ITextServiceClient>(new TextServiceClient("http://localhost:57504/api/core"));
             }
         }
+
+        private class DatabaseContextServiceSetup : DependencyContainerSetup
+        {
+            public override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
+            {
+                var dbContext = new EasyReadDbContext("EasyReadDb");
+                container.Register<IDbContextFactory>(new DbContectFactory(dbContext));
+
+                //IDisposable items added to this collection are disposed automatically when the request has been processed.
+                context.Items["EasyReadDbContext"] = dbContext;
+            }
+        }
+
+        private class LoginAuthenticationServiceSetup : DependencyContainerSetup
+        {
+            private class LoginAuthenticationModuleSettings : ILoginAuthenticationModuleSettings
+            {
+                public string ModulePath { get; } = "api/core";
+            }
+
+            public override void ConfigureApplicationContainer(TinyIoCContainer container)
+            {
+                container.Register<ILoginAuthenticationModuleSettings, LoginAuthenticationModuleSettings>();
+                container.Register<IPasswordValidator, PasswordValidator>();
+                container.Register<ISaltedHashGenerator, SaltedHashGenerator>();
+            }
+
+            public override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
+            {
+                container.Register<ILoginAuthenticationService, LoginAuthenticationService>();
+                container.Register<ILoginAuthenticationRepository, LoginAuthenticationRepository>();
+            }
+        }
     }
-
-
+    
     internal class DbContectFactory : IDbContextFactory
     {
         private readonly EasyReadDbContext _context;

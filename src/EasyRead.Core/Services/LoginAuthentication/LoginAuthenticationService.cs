@@ -6,7 +6,7 @@ using EasyRead.Core.Repositories;
 
 namespace EasyRead.Core.Services.LoginAuthentication
 {
-    public sealed class LoginAuthenticationService
+    public sealed class LoginAuthenticationService : ILoginAuthenticationService
     {
         public const int SALT_LENGTH = 32;
 

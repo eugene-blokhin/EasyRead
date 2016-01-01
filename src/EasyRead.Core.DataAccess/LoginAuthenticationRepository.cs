@@ -47,9 +47,9 @@ namespace EasyRead.Core.DataAccess
             if (loginAuthentication.Id == default(long)) throw new Exception<EntityHasNotAssignedKey>();
             CheckFields(loginAuthentication);
 
-            _contextFactory.GetContext().LoginsAuthentication.Find(loginAuthentication.Id);
-
-
+            var context = _contextFactory.GetContext();
+            context.LoginsAuthentication.Find(loginAuthentication.Id);
+            context.SaveChanges();
         }
 
         private static void CheckFields(LoginAuthentication loginAuthentication)
